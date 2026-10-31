@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Type Along</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header>
+  <h1>Type Along</h1>
+  <nav><button class="tab" id="tLib" aria-pressed="true">Songs</button><button class="tab" id="tAdd" aria-pressed="false">Admin: add song</button></nav>
+</header>
+<div class="banner" id="ytErr" hidden></div>
+
+<section id="lib"><div class="card" id="list"></div></section>
+
+<section id="add" hidden>
+  <div class="card" id="s1">
+    <h2>Add a song</h2>
+    <label for="url">YouTube link</label><input type="text" id="url" placeholder="https://www.youtube.com/watch?v=...">
+    <label for="title">Title</label><input type="text" id="title">
+    <label for="lyr">Lyrics: plain lines, or a caption file with times (.srt, .vtt, .lrc)</label>
+    <textarea id="lyr" placeholder="Paste your lyrics here, one line per row"></textarea>
+    <label for="file">Or load a caption file</label><input type="file" id="file" accept=".srt,.vtt,.lrc,.txt">
+    <div class="err" id="e1"></div>
+    <button class="main" id="go">Continue</button>
+  </div>
+  <div class="card" id="syncBox" hidden>
+    <div class="vid"><div id="syncSlot"></div></div>
+    <div id="s2" hidden>
+      <p class="muted">Play the video. Press Space, or the button, as each line starts. Click an empty part of the page first so the keys work. Backspace undoes the last mark.</p>
+      <div class="big" id="sline"></div><div class="next" id="snext"></div>
+      <div class="row"><button class="main" id="mark">Mark line start</button><button id="undo">Undo</button><span class="muted" id="sprog"></span></div>
+    </div>
+    <div id="s3" hidden>
+      <h2>Check the timing</h2>
+      <p class="muted">Nudge a line by 0.1 seconds, or Jump to hear it.</p>
+      <div id="rev"></div>
+      <div class="err" id="e3"></div>
+      <div class="row"><button class="main" id="save">Save song</button><button id="redo">Redo timing</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="play" hidden>
+  <div class="card">
+    <div class="vid noclick"><div id="playSlot"></div></div>
+    <div class="live"><span>Line<b id="pl">0/0</b></span><span>WPM<b id="pw">0</b></span><span>Accuracy<b id="pa">100%</b></span></div>
+    <div class="banner" id="pb" hidden>Video paused. Finish the line to keep going.</div>
+    <div class="big" id="pt"></div><div class="next" id="pn"></div>
+    <div class="row"><button class="main" id="pstart">Start</button><button id="preplay">Replay line (Tab)</button><button id="pback">Back to songs</button></div>
+  </div>
+  <div class="card" id="res" hidden>
+    <h2>Song finished</h2>
+    <div class="stats"><div>Words per minute<b id="rw">0</b></div><div>Accuracy<b id="ra">0%</b></div></div>
+    <div class="row"><button class="main" id="again">Play again</button><button id="rback">Back to songs</button></div>
+  </div>
+</section>
+</main>
+<script src="app.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>
