@@ -1,0 +1,2 @@
+# typing
+just for fun 
